@@ -19,9 +19,9 @@ class App extends React.Component {
 
   render() {
     return (
-      <div className="App">
+      <div>
         <Header as="h2">
-          <Icon name="plug" />
+          <Icon name="users" />
           <Header.Content>Reactivities</Header.Content>
         </Header>
         <ul>
