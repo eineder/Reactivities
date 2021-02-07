@@ -32,5 +32,18 @@ namespace API
             return await _mediator.Send(new Details.Query { Id = id });
         }
 
+        [HttpPost]
+        public async Task<ActionResult<Unit>> Create(Create.Command command)
+        {
+            return await _mediator.Send(command);
+        }
+
+
+        [HttpPut("{id}")]
+        public async Task<ActionResult<Unit>> Edite(Guid id, Edit.Command command)
+        {
+            command.Id = id;
+            return await _mediator.Send(command);
+        }
     }
 }
