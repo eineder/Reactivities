@@ -14,6 +14,8 @@ using Microsoft.OpenApi.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Sqlite;
 using Persistence;
+using MediatR;
+using Application.Activities;
 
 namespace API
 {
@@ -45,6 +47,7 @@ namespace API
                 });
             });
 
+            services.AddMediatR(typeof(List.Handler).Assembly);
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
