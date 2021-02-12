@@ -1,23 +1,40 @@
 import React, { useState } from 'react';
 import { Grid, GridColumn, List } from 'semantic-ui-react';
 import { IActivity } from '../../../app/layout/models/activity';
+import { ActivityDetails } from '../details/ActivityDetails';
+import { ActivityForm } from '../form/ActivityForm';
 import { ActivityList } from './ActivityList';
 
 interface IProps {
   activities: IActivity[];
+  selectedActivity: IActivity | undefined;
+  selectActivity: (id: String) => void;
+  cancelSelectActivity: () => void;
 }
 
-export const ActivityDashboard: React.FC<IProps> = ({ activities }) => {
+export function ActivityDashboard({
+  activities,
+  selectedActivity,
+  selectActivity,
+  cancelSelectActivity,
+}: IProps) {
   return (
     <Grid>
       <GridColumn width={10}>
-        <ActivityList activities={activities}></ActivityList>
-        {/* <List>
-          {activities.map((activity) => (
-            <List.Item key={activity.id}>{activity.title}</List.Item>
-          ))}
-        </List> */}
+        <ActivityList
+          activities={activities}
+          selectActivity={selectActivity}
+        ></ActivityList>
+      </GridColumn>
+      <GridColumn width={6}>
+        {selectedActivity && (
+          <ActivityDetails
+            activity={selectedActivity}
+            cancelSelectActivity={cancelSelectActivity}
+          />
+        )}
+        <ActivityForm></ActivityForm>
       </GridColumn>
     </Grid>
   );
-};
+}
