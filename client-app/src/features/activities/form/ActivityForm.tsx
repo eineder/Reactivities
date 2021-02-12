@@ -1,7 +1,7 @@
 import React from 'react';
 import { Form, Segment } from 'semantic-ui-react';
 
-export const ActivityForm = () => {
+export function ActivityForm() {
   return (
     <Segment>
       <Form>
@@ -14,4 +14,4 @@ export const ActivityForm = () => {
       </Form>
     </Segment>
   );
-};
+}

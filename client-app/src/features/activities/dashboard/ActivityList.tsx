@@ -7,10 +7,7 @@ interface Props {
   selectActivity: (id: String) => void;
 }
 
-export const ActivityList: React.FC<Props> = ({
-  activities,
-  selectActivity,
-}) => {
+export function ActivityList({ activities, selectActivity }: Props) {
   return (
     <Segment clearing>
       <Item.Group divided>
@@ -40,4 +37,4 @@ export const ActivityList: React.FC<Props> = ({
       </Item.Group>
     </Segment>
   );
-};
+}

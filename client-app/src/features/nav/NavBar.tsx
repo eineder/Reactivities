@@ -1,7 +1,7 @@
 import React from 'react';
 import { Button, Container, Menu } from 'semantic-ui-react';
 
-export const NavBar = () => {
+export function NavBar() {
   return (
     <Menu fixed="top" inverted>
       <Container>
@@ -20,4 +20,4 @@ export const NavBar = () => {
       </Container>
     </Menu>
   );
-};
+}
