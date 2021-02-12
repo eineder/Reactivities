@@ -2,12 +2,12 @@ import React from 'react';
 import { Button, Card, Icon, Image } from 'semantic-ui-react';
 import { IActivity } from '../../../app/layout/models/activity';
 
-interface IProps {
+interface Props {
   activity: IActivity;
   cancelSelectActivity: () => void;
 }
 
-export function ActivityDetails({ activity, cancelSelectActivity }: IProps) {
+export function ActivityDetails({ activity, cancelSelectActivity }: Props) {
   return (
     <Card fluid>
       <Image

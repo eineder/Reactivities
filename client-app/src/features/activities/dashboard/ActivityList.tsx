@@ -2,12 +2,12 @@ import React from 'react';
 import { Item, Image, Button, Label, Segment } from 'semantic-ui-react';
 import { IActivity } from '../../../app/layout/models/activity';
 
-interface IProps {
+interface Props {
   activities: IActivity[];
   selectActivity: (id: String) => void;
 }
 
-export const ActivityList: React.FC<IProps> = ({
+export const ActivityList: React.FC<Props> = ({
   activities,
   selectActivity,
 }) => {

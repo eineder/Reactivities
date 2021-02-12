@@ -5,7 +5,7 @@ import { ActivityDetails } from '../details/ActivityDetails';
 import { ActivityForm } from '../form/ActivityForm';
 import { ActivityList } from './ActivityList';
 
-interface IProps {
+interface Props {
   activities: IActivity[];
   selectedActivity: IActivity | undefined;
   selectActivity: (id: String) => void;
@@ -17,7 +17,7 @@ export function ActivityDashboard({
   selectedActivity,
   selectActivity,
   cancelSelectActivity,
-}: IProps) {
+}: Props) {
   return (
     <Grid>
       <GridColumn width={10}>
