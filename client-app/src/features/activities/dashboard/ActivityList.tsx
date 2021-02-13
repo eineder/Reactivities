@@ -4,7 +4,7 @@ import { IActivity } from '../../../app/layout/models/activity';
 
 interface Props {
   activities: IActivity[];
-  selectActivity: (id: String) => void;
+  selectActivity: (id: string) => void;
 }
 
 export function ActivityList({ activities, selectActivity }: Props) {

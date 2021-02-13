@@ -8,8 +8,11 @@ import { ActivityList } from './ActivityList';
 interface Props {
   activities: IActivity[];
   selectedActivity: IActivity | undefined;
-  selectActivity: (id: String) => void;
+  selectActivity: (id: string) => void;
   cancelSelectActivity: () => void;
+  editMode: Boolean;
+  openForm: (id: string) => void;
+  closeForm: () => void;
 }
 
 export function ActivityDashboard({
@@ -17,6 +20,9 @@ export function ActivityDashboard({
   selectedActivity,
   selectActivity,
   cancelSelectActivity,
+  editMode,
+  openForm,
+  closeForm,
 }: Props) {
   return (
     <Grid>
@@ -27,13 +33,16 @@ export function ActivityDashboard({
         ></ActivityList>
       </GridColumn>
       <GridColumn width={6}>
-        {selectedActivity && (
+        {selectedActivity && !editMode && (
           <ActivityDetails
             activity={selectedActivity}
             cancelSelectActivity={cancelSelectActivity}
+            openForm={openForm}
           />
         )}
-        <ActivityForm></ActivityForm>
+        {editMode && (
+          <ActivityForm closeForm={closeForm} activity={selectedActivity} />
+        )}
       </GridColumn>
     </Grid>
   );
