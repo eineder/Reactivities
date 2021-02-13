@@ -1,9 +1,9 @@
 import React from 'react';
 import { Button, Card, Icon, Image } from 'semantic-ui-react';
-import { IActivity } from '../../../app/layout/models/activity';
+import { Activity } from '../../../app/layout/models/activity';
 
 interface Props {
-  activity: IActivity;
+  activity: Activity;
   cancelSelectActivity: () => void;
   openForm: (id: string) => void;
 }

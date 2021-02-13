@@ -1,9 +1,9 @@
 import React from 'react';
 import { Button, Form, Segment } from 'semantic-ui-react';
-import { IActivity } from '../../../app/layout/models/activity';
+import { Activity } from '../../../app/layout/models/activity';
 
 interface Props {
-  activity: IActivity | undefined;
+  activity: Activity | undefined;
   closeForm: () => void;
 }
 

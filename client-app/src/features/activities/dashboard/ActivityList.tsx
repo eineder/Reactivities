@@ -1,9 +1,9 @@
 import React from 'react';
 import { Item, Image, Button, Label, Segment } from 'semantic-ui-react';
-import { IActivity } from '../../../app/layout/models/activity';
+import { Activity } from '../../../app/layout/models/activity';
 
 interface Props {
-  activities: IActivity[];
+  activities: Activity[];
   selectActivity: (id: string) => void;
 }
 

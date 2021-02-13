@@ -1,20 +1,20 @@
 import React, { useState, useEffect, Fragment } from 'react';
 import axios from 'axios';
 import { Container, Header, Icon, List } from 'semantic-ui-react';
-import { IActivity } from './models/activity';
+import { Activity } from './models/activity';
 import { NavBar } from '../../features/nav/NavBar';
 import { ActivityDashboard } from '../../features/activities/dashboard/ActivityDashboard';
 
 const App = () => {
-  const [activities, setActivities] = useState<IActivity[]>([]);
+  const [activities, setActivities] = useState<Activity[]>([]);
   const [selectedActivity, setSelectedActivity] = useState<
-    IActivity | undefined
+    Activity | undefined
   >(undefined);
   const [editMode, setEditMode] = useState(false);
 
   useEffect(() => {
     axios
-      .get<IActivity[]>('http://localhost:5000/api/activities')
+      .get<Activity[]>('http://localhost:5000/api/activities')
       .then((response) => {
         console.log(response);
         setActivities(response.data);

@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 import { Grid, GridColumn, List } from 'semantic-ui-react';
-import { IActivity } from '../../../app/layout/models/activity';
+import { Activity } from '../../../app/layout/models/activity';
 import { ActivityDetails } from '../details/ActivityDetails';
 import { ActivityForm } from '../form/ActivityForm';
 import { ActivityList } from './ActivityList';
 
 interface Props {
-  activities: IActivity[];
-  selectedActivity: IActivity | undefined;
+  activities: Activity[];
+  selectedActivity: Activity | undefined;
   selectActivity: (id: string) => void;
   cancelSelectActivity: () => void;
   editMode: Boolean;
