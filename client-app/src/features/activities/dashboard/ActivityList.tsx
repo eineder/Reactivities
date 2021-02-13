@@ -1,5 +1,5 @@
 import React from 'react';
-import { Item, Image, Button, Label, Segment } from 'semantic-ui-react';
+import { Item, Button, Label, Segment } from 'semantic-ui-react';
 import { Activity } from '../../../app/layout/models/activity';
 
 interface Props {
