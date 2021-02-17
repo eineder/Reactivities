@@ -5,14 +5,19 @@ import { Activity } from '../../../app/layout/models/activity';
 interface Props {
   activities: Activity[];
   selectActivity: (id: string) => void;
+  deleteActivity: (id: string) => void;
 }
 
-export function ActivityList({ activities, selectActivity }: Props) {
+export function ActivityList({
+  activities,
+  selectActivity,
+  deleteActivity,
+}: Props) {
   return (
     <Segment clearing>
       <Item.Group divided>
         {activities.map((a) => (
-          <Item>
+          <Item key={a.id}>
             <Item.Content>
               <Item.Header as="a">{a.title}</Item.Header>
               <Item.Meta>{a.date}</Item.Meta>
@@ -28,6 +33,12 @@ export function ActivityList({ activities, selectActivity }: Props) {
                   floated="right"
                   content="View"
                   color="blue"
+                />
+                <Button
+                  onClick={() => deleteActivity(a.id)}
+                  floated="right"
+                  content="Delete"
+                  color="red"
                 />
                 <Label basic={true} content={a.category} />
               </Item.Extra>
