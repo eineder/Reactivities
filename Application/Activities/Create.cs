@@ -13,13 +13,7 @@ namespace Application.Activities
 
         public class Command : IRequest
         {
-            public Guid Id { get; set; }
-            public string Title { get; set; }
-            public DateTime Date { get; set; }
-            public string Description { get; set; }
-            public string Category { get; set; }
-            public string City { get; set; }
-            public string Venue { get; set; }
+            public Activity Activity { get; set; }
 
         }
 
@@ -35,18 +29,7 @@ namespace Application.Activities
 
             public async Task<Unit> Handle(Command request, CancellationToken cancellationToken)
             {
-                var activity = new Activity
-                {
-                    Category = request.Category,
-                    City = request.City,
-                    Date = request.Date,
-                    Description = request.Description,
-                    Id = request.Id,
-                    Title = request.Title,
-                    Venue = request.Venue
-                };
-
-                _context.Activities.Add(activity);
+                _context.Activities.Add(request.Activity);
                 var success = await _context.SaveChangesAsync() > 0;
                 if (success)
                     return Unit.Value;

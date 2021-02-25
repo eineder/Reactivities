@@ -33,17 +33,18 @@ namespace API
         }
 
         [HttpPost]
-        public async Task<ActionResult<Unit>> Create(Create.Command command)
+        public async Task<IActionResult> Create(Activity activity)
         {
-            return await _mediator.Send(command);
+            return Ok(await _mediator.Send(new Create.Command { Activity = activity }));
         }
 
 
         [HttpPut("{id}")]
-        public async Task<ActionResult<Unit>> Edit(Guid id, Edit.Command command)
+        public async Task<IActionResult> Edit(Guid id, Activity activity)
         {
-            command.Id = id;
-            return await _mediator.Send(command);
+            activity.Id = id;
+            var command = new Edit.Command { Activity = activity };
+            return Ok(await _mediator.Send(command));
         }
 
         [HttpDelete("{id}")]
