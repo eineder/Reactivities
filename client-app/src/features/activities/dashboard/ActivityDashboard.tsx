@@ -37,6 +37,7 @@ export function ActivityDashboard({
           activities={activities}
           selectActivity={selectActivity}
           deleteActivity={deleteActivity}
+          submitting={submitting}
         ></ActivityList>
       </GridColumn>
       <GridColumn width={6}>
