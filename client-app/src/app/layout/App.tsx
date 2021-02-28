@@ -2,7 +2,7 @@ import React, { useState, useEffect, Fragment } from 'react';
 import { Container } from 'semantic-ui-react';
 import { Activity } from './models/activity';
 import { NavBar } from '../../features/nav/NavBar';
-import { ActivityDashboard } from '../../features/activities/dashboard/ActivityDashboard';
+import ActivityDashboard from '../../features/activities/dashboard/ActivityDashboard';
 import { v4 as uuid } from 'uuid';
 import agent from '../api/agent';
 import LoadingComponent from './LoadingComponent';
@@ -22,23 +22,6 @@ const App = () => {
   useEffect(() => {
     activityStore.loadActivities();
   }, [activityStore]);
-
-  function handleSelectActivity(id: string) {
-    setSelectedActivity(activities.find((p) => p.id === id));
-  }
-
-  function handleCancelSelectActivity() {
-    setSelectedActivity(undefined);
-  }
-
-  function handleFormOpen(id?: string) {
-    id ? handleSelectActivity(id) : handleCancelSelectActivity();
-    setEditMode(true);
-  }
-
-  function handleFormClose() {
-    setEditMode(false);
-  }
 
   function handleCreateOrEditActivity(activity: Activity) {
     setSubmitting(true);
@@ -77,16 +60,10 @@ const App = () => {
 
   return (
     <Fragment>
-      <NavBar openForm={handleFormOpen} />
+      <NavBar />
       <Container style={{ marginTop: '7em' }}>
         <ActivityDashboard
           activities={activityStore.activities}
-          selectedActivity={selectedActivity}
-          selectActivity={handleSelectActivity}
-          cancelSelectActivity={handleCancelSelectActivity}
-          editMode={editMode}
-          openForm={handleFormOpen}
-          closeForm={handleFormClose}
           createOrEdit={handleCreateOrEditActivity}
           deleteActivity={handleDeleteActivity}
           submitting={submitting}

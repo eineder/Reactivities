@@ -1,17 +1,16 @@
 import React, { ChangeEvent, useState } from 'react';
 import { Button, Form, Segment } from 'semantic-ui-react';
 import { Activity } from '../../../app/layout/models/activity';
+import { useStore } from '../../../app/stores/Store';
 
 interface Props {
   activity: Activity | undefined;
-  closeForm: () => void;
   createOrEdit: (activity: Activity) => void;
   submitting: boolean;
 }
 
 export function ActivityForm({
   activity: selectedActivity,
-  closeForm,
   createOrEdit,
   submitting,
 }: Props) {
@@ -38,6 +37,8 @@ export function ActivityForm({
     const { name, value } = event.target;
     setActivity({ ...activity, [name]: value });
   }
+
+  const { activityStore } = useStore();
 
   return (
     <Segment clearing>
@@ -87,7 +88,7 @@ export function ActivityForm({
           content="Submit"
         ></Button>
         <Button
-          onClick={closeForm}
+          onClick={() => activityStore.closeForm()}
           floated="right"
           type="button"
           content="Cancel"
