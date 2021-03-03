@@ -4,19 +4,17 @@ import { Grid, GridColumn } from 'semantic-ui-react';
 import { Activity } from '../../../app/layout/models/activity';
 import { useStore } from '../../../app/stores/Store';
 import { ActivityDetails } from '../details/ActivityDetails';
-import { ActivityForm } from '../form/ActivityForm';
+import ActivityForm from '../form/ActivityForm';
 import { ActivityList } from './ActivityList';
 
 interface Props {
   activities: Activity[];
-  createOrEdit: (activity: Activity) => void;
   deleteActivity: (id: string) => void;
   submitting: boolean;
 }
 
 export default observer(function ActivityDashboard({
   activities,
-  createOrEdit,
   deleteActivity,
   submitting,
 }: Props) {
@@ -36,13 +34,7 @@ export default observer(function ActivityDashboard({
         {selectedActivity && !editMode && (
           <ActivityDetails activity={selectedActivity} />
         )}
-        {editMode && (
-          <ActivityForm
-            activity={selectedActivity}
-            createOrEdit={createOrEdit}
-            submitting={submitting}
-          />
-        )}
+        {editMode && <ActivityForm />}
       </GridColumn>
     </Grid>
   );
