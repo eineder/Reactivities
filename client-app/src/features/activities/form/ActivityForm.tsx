@@ -1,49 +1,52 @@
-import { observer } from 'mobx-react-lite';
-import React, { ChangeEvent, useEffect, useState } from 'react';
-import { useHistory, useParams } from 'react-router';
-import { Button, Form, Segment } from 'semantic-ui-react';
-import LoadingComponent from '../../../app/layout/LoadingComponent';
-import { useStore } from '../../../app/stores/Store';
-import {v4 as uuid} from 'uuid';
+import { observer } from "mobx-react-lite";
+import React, { ChangeEvent, useEffect, useState } from "react";
+import { useHistory, useParams } from "react-router";
+import { Button, Form, Segment } from "semantic-ui-react";
+import LoadingComponent from "../../../app/layout/LoadingComponent";
+import { useStore } from "../../../app/stores/Store";
+import { v4 as uuid } from "uuid";
+import { Link } from "react-router-dom";
 
 export default observer(function ActivityForm() {
-
-const history = useHistory();
+  const history = useHistory();
   const { activityStore } = useStore();
   const {
     createActivity,
     updateActivity,
     loading,
     loadActivity,
-    loadingInitial
+    loadingInitial,
   } = activityStore;
 
-  const {id} = useParams<{id: string}>();
+  const { id } = useParams<{ id: string }>();
 
   const [activity, setActivity] = useState({
-    id: '',
-    title: '',
-    category: '',
-    description: '',
-    date: '',
-    city: '',
-    venue: '',
+    id: "",
+    title: "",
+    category: "",
+    description: "",
+    date: "",
+    city: "",
+    venue: "",
   });
 
-useEffect(() => {
-  if (id) loadActivity(id).then(activity => setActivity(activity!));
-}, [id, loadActivity]);
-
+  useEffect(() => {
+    if (id) loadActivity(id).then((activity) => setActivity(activity!));
+  }, [id, loadActivity]);
 
   function handleSubmit() {
-    if (activity.id.length ===0){
+    if (activity.id.length === 0) {
       let newActivity = {
-          ...activity,
-          id: uuid()
+        ...activity,
+        id: uuid(),
       };
-      createActivity(newActivity).then(() => history.push(`/activities/${newActivity.id}`));
-    } else{
-      updateActivity(activity).then(() => history.push(`/activities/${activity.id}`));
+      createActivity(newActivity).then(() =>
+        history.push(`/activities/${newActivity.id}`)
+      );
+    } else {
+      updateActivity(activity).then(() =>
+        history.push(`/activities/${activity.id}`)
+      );
     }
   }
 
@@ -54,7 +57,7 @@ useEffect(() => {
     setActivity({ ...activity, [name]: value });
   }
 
-if (loadingInitial) return <LoadingComponent content='Loading activity...'/>;
+  if (loadingInitial) return <LoadingComponent content="Loading activity..." />;
 
   return (
     <Segment clearing>
@@ -103,7 +106,13 @@ if (loadingInitial) return <LoadingComponent content='Loading activity...'/>;
           type="submit"
           content="Submit"
         ></Button>
-        <Button floated="right" type="button" content="Cancel"></Button>
+        <Button
+          as={Link}
+          to="/activities"
+          floated="right"
+          type="button"
+          content="Cancel"
+        ></Button>
       </Form>
     </Segment>
   );
