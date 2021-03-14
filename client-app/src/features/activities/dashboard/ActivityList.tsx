@@ -17,16 +17,12 @@ export default observer(function ActivityList() {
             <Header sub color="teal">
               {date}
             </Header>
-            <Segment clearing>
-              <Item.Group divided>
-                {activities.map((activity) => (
-                  <ActivityListItem
-                    key={activity.id}
-                    activity={activity}
-                  ></ActivityListItem>
-                ))}
-              </Item.Group>
-            </Segment>
+            {activities.map((activity) => (
+              <ActivityListItem
+                key={activity.id}
+                activity={activity}
+              ></ActivityListItem>
+            ))}
           </Fragment>
         );
       })}
