@@ -1,26 +1,12 @@
-import { SyntheticEvent, useState } from "react";
 import { Link } from "react-router-dom";
 import { Button, Icon, Item, Segment } from "semantic-ui-react";
 import { Activity } from "../../../app/models/activity";
-import { useStore } from "../../../app/stores/Store";
 
 interface Props {
   activity: Activity;
 }
 
 const ActivityListItem = ({ activity }: Props) => {
-  const { activityStore } = useStore();
-  const { deleteActivity, loading } = activityStore;
-  const [target, setTarget] = useState("");
-
-  function handleActivityDelete(
-    event: SyntheticEvent<HTMLButtonElement>,
-    id: string
-  ) {
-    deleteActivity(id);
-    setTarget(event.currentTarget.name);
-  }
-
   return (
     <Segment.Group>
       <Segment>
