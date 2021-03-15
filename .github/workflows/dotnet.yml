@@ -18,7 +18,9 @@ jobs:
       with:
         dotnet-version: 5.0.x
     - name: Restore dependencies
-      run: dotnet restore /home/runner/work/Reactivities/api/API.csproj
+      run: 
+        cd /home/runner/work/Reactivities/api/
+        dotnet restore
     - name: Build
       run: dotnet build --no-restore
     - name: Test
