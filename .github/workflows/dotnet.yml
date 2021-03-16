@@ -1,0 +1,32 @@
+name: .NET
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Setup Node
+      uses: actions/setup-node@v2
+      with:
+        node-version: '14'
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: 5.0.x    
+    - name: Build API
+      working-directory: ./API
+      run: dotnet build --configuration Release
+    - name: Restore Client App Dependencies
+      working-directory: ./client-app
+      run: npm i
+    - name: Build Client App
+      working-directory: ./client-app
+      run: npm run build
