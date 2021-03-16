@@ -24,3 +24,6 @@ jobs:
     - name: Build API
       working-directory: ./API
       run: dotnet build --configuration Release
+    - name: Build Client App
+      working-directory: ./client-app
+      run: npm run build
