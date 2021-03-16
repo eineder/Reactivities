@@ -24,6 +24,9 @@ jobs:
     - name: Build API
       working-directory: ./API
       run: dotnet build --configuration Release
+    - name: Restore Client App Dependencies
+      working-directory: ./client-app
+      run: npm i
     - name: Build Client App
       working-directory: ./client-app
       run: npm run build
