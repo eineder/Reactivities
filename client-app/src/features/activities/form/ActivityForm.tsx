@@ -1,44 +1,36 @@
-import { observer } from "mobx-react-lite";
-import React, { ChangeEvent, useEffect, useState } from "react";
-import { useHistory, useParams } from "react-router";
-import { Button, Label, Segment } from "semantic-ui-react";
-import { Form, ErrorMessage } from "formik";
-import LoadingComponent from "../../../app/layout/LoadingComponent";
-import { useStore } from "../../../app/stores/Store";
-import { v4 as uuid } from "uuid";
-import { Link } from "react-router-dom";
-import { Formik } from "formik";
-import * as Yup from "yup";
-import MyTextInput from "../../../app/common/form/MyTextInput";
-import MyTextArea from "../../../app/common/form/MyTextArea";
+import { observer } from 'mobx-react-lite';
+import { useEffect, useState } from 'react';
+import { useParams } from 'react-router';
+import { Button, Segment } from 'semantic-ui-react';
+import { Form } from 'formik';
+import LoadingComponent from '../../../app/layout/LoadingComponent';
+import { useStore } from '../../../app/stores/Store';
+import { Link } from 'react-router-dom';
+import { Formik } from 'formik';
+import * as Yup from 'yup';
+import MyTextInput from '../../../app/common/form/MyTextInput';
+import MyTextArea from '../../../app/common/form/MyTextArea';
 
 export default observer(function ActivityForm() {
-  const history = useHistory();
   const { activityStore } = useStore();
-  const {
-    createActivity,
-    updateActivity,
-    loading,
-    loadActivity,
-    loadingInitial,
-  } = activityStore;
+  const { loading, loadActivity, loadingInitial } = activityStore;
 
   const { id } = useParams<{ id: string }>();
 
   const [activity, setActivity] = useState({
-    id: "",
-    title: "",
-    category: "",
-    description: "",
-    date: "",
-    city: "",
-    venue: "",
+    id: '',
+    title: '',
+    category: '',
+    description: '',
+    date: '',
+    city: '',
+    venue: '',
   });
 
   const validationSchema = Yup.object({
-    title: Yup.string().required("The acitivity title is required."),
+    title: Yup.string().required('The acitivity title is required.'),
     description: Yup.string().required(
-      "The acitivity description is required."
+      'The acitivity description is required.'
     ),
     category: Yup.string().required(),
     date: Yup.string().required(),
