@@ -3,13 +3,8 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.OpenApi.Models;
-using Microsoft.EntityFrameworkCore;
-using Persistence;
-using MediatR;
-using Application.Activities;
-using FluentValidation.AspNetCore;
 using API.Middleware;
+using API.Extensions;
 
 namespace API
 {
@@ -25,33 +20,8 @@ namespace API
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<DataContext>(opt =>
-            {
-
-                opt.UseSqlite(Configuration.GetConnectionString("DefaultConnection"));
-            });
-
-            services.AddCors(opt =>
-            {
-                opt.AddPolicy("CorsPolicy", policy =>
-                {
-                    policy.AllowAnyHeader()
-                    .AllowAnyMethod()
-                    .WithOrigins("http://localhost:7000")
-                    .WithOrigins("http://localhost:3000");
-                });
-            });
-
-            services.AddMediatR(typeof(List.Handler).Assembly);
-            services.AddControllers().AddFluentValidation(config =>
-            {
-                config.RegisterValidatorsFromAssemblyContaining<Create>();
-            });
-            services.AddSwaggerGen(c =>
-            {
-                c.CustomSchemaIds(type => type.ToString());
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "API", Version = "v1" });
-            });
+            services.AddApplicationServices(Configuration);
+            services.AddIdentityServices(Configuration);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
