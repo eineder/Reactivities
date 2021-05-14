@@ -1,8 +1,9 @@
-import { Activity } from "../../app/models/activity";
-import axios, { AxiosError } from "axios";
-import { toast } from "react-toastify";
-import { history } from "../..";
-import { store } from "../stores/Store";
+import { Activity } from '../../app/models/activity';
+import axios, { AxiosError } from 'axios';
+import { toast } from 'react-toastify';
+import { history } from '../..';
+import { store } from '../stores/Store';
+import { User, UserFormValues } from '../models/user';
 
 const sleep = (delay: number) => {
   return new Promise((resolve) => {
@@ -10,7 +11,7 @@ const sleep = (delay: number) => {
   });
 };
 
-axios.defaults.baseURL = "http://localhost:5000/api";
+axios.defaults.baseURL = 'http://localhost:5000/api';
 
 axios.interceptors.response.use(
   async (response) => {
@@ -21,12 +22,12 @@ axios.interceptors.response.use(
     const { data, status, config } = error.response!;
     switch (status) {
       case 400:
-        if (typeof data === "string") {
+        if (typeof data === 'string') {
           toast.error(data);
         }
 
-        if (config.method === "get" && data.errors.hasOwnProperty("id")) {
-          history.push("/not-found");
+        if (config.method === 'get' && data.errors.hasOwnProperty('id')) {
+          history.push('/not-found');
         }
 
         if (data.errors) {
@@ -41,20 +42,20 @@ axios.interceptors.response.use(
           throw modalStateErrors.flat();
         }
 
-        toast.error("bad request");
+        toast.error('bad request');
         break;
 
       case 401:
-        toast.error("unauthorised");
+        toast.error('unauthorised');
         break;
 
       case 404:
-        history.push("/not-found");
+        history.push('/not-found');
         break;
 
       case 500:
         store.commonStore.setServerError(data);
-        history.push("/server-error");
+        history.push('/server-error');
         break;
     }
     return Promise.reject(error);
@@ -72,13 +73,20 @@ const requests = {
 
 const agent = {
   Activities: {
-    list: () => requests.get<Activity[]>("/activities"),
+    list: () => requests.get<Activity[]>('/activities'),
     details: (id: string) => requests.get<Activity>(`/activities/${id}`),
     create: (activity: Activity) =>
-      requests.post<void>("/activities", activity),
+      requests.post<void>('/activities', activity),
     update: (activity: Activity) =>
       requests.put<void>(`/activities/${activity.id}`, activity),
     delete: (id: string) => requests.del<void>(`/activities/${id}`),
+  },
+  Account: {
+    current: () => requests.get<User>('/account'),
+    login: (user: UserFormValues) =>
+      requests.post<User>('/account/login', user),
+    register: (user: UserFormValues) =>
+      requests.post<User>('/account/register', user),
   },
 };
 
