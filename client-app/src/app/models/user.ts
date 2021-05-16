@@ -1,8 +1,8 @@
 export interface User {
   username: string;
   displayName: string;
-  token: String;
-  image?: String;
+  token: string;
+  image?: string;
 }
 
 export interface UserFormValues {
