@@ -2,7 +2,7 @@ import { observer } from 'mobx-react-lite';
 import React, { Fragment } from 'react';
 import { Link } from 'react-router-dom';
 import { Image, Container, Header, Segment, Button } from 'semantic-ui-react';
-import { useStore } from '../../app/stores/Store';
+import { useStore } from '../../app/stores/store';
 import LoginForm from '../user/LoginForm';
 
 export default observer(function HomePage() {

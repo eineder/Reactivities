@@ -1,6 +1,6 @@
 import { observer } from 'mobx-react-lite';
 import { Modal, ModalContent } from 'semantic-ui-react';
-import { useStore } from '../../stores/Store';
+import { useStore } from '../../stores/store';
 
 export default observer(function ModalContainer() {
   const { modalStore } = useStore();

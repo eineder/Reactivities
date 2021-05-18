@@ -4,7 +4,7 @@ import { useParams, useHistory } from 'react-router';
 import { Button, Header, Segment } from 'semantic-ui-react';
 import { Form } from 'formik';
 import LoadingComponent from '../../../app/layout/LoadingComponent';
-import { useStore } from '../../../app/stores/Store';
+import { useStore } from '../../../app/stores/store';
 import { Link } from 'react-router-dom';
 import { Formik } from 'formik';
 import * as Yup from 'yup';

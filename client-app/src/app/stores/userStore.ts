@@ -2,7 +2,7 @@ import { UserFormValues } from './../models/user';
 import { makeAutoObservable, runInAction } from 'mobx';
 import { User } from '../models/user';
 import agent from '../api/agent';
-import { store } from './Store';
+import { store } from './store';
 import { history } from '../..';
 
 export default class UserStore {
