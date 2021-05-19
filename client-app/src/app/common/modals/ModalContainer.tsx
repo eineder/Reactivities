@@ -9,7 +9,7 @@ export default observer(function ModalContainer() {
     <Modal
       open={modalStore.modal.open}
       onClose={modalStore.closeModal}
-      size="mini"
+      size='mini'
     >
       <ModalContent>{modalStore.modal.body}</ModalContent>
     </Modal>

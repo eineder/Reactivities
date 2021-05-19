@@ -29,13 +29,13 @@ const App = () => {
   }, [commonStore, userStore]);
 
   if (!commonStore.appLoaded)
-    return <LoadingComponent content="Loading app..." />;
+    return <LoadingComponent content='Loading app...' />;
 
   return (
     <Fragment>
-      <ToastContainer position="bottom-right" hideProgressBar />
+      <ToastContainer position='bottom-right' hideProgressBar />
       <ModalContainer />
-      <Route exact path="/" component={HomePage} />
+      <Route exact path='/' component={HomePage} />
       <Route
         path={'/(.+)'}
         render={() => (
@@ -43,16 +43,16 @@ const App = () => {
             <NavBar />
             <Container style={{ marginTop: '7em' }}>
               <Switch>
-                <Route exact path="/activities" component={ActivityDashboard} />
-                <Route path="/activities/:id" component={ActivityDetails} />
+                <Route exact path='/activities' component={ActivityDashboard} />
+                <Route path='/activities/:id' component={ActivityDetails} />
                 <Route
                   key={location.key}
                   path={['/createActivity', '/manage/:id']}
                   component={ActivityForm}
                 />
-                <Route path="/errors" component={TestErrors} />
-                <Route path="/server-error" component={ServerError} />
-                <Route path="/login" component={LoginForm} />
+                <Route path='/errors' component={TestErrors} />
+                <Route path='/server-error' component={ServerError} />
+                <Route path='/login' component={LoginForm} />
                 <Route component={NotFound} />
               </Switch>
             </Container>

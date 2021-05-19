@@ -70,11 +70,11 @@ export default observer(function ActivityForm() {
     }
   }
 
-  if (loadingInitial) return <LoadingComponent content="Loading activity..." />;
+  if (loadingInitial) return <LoadingComponent content='Loading activity...' />;
 
   return (
     <Segment clearing>
-      <Header content="Activity Details" sub color="teal" />
+      <Header content='Activity Details' sub color='teal' />
       <Formik
         validationSchema={validationSchema}
         enableReinitialize
@@ -82,38 +82,38 @@ export default observer(function ActivityForm() {
         onSubmit={(values) => handleFormSubmit(values)}
       >
         {({ handleSubmit, isSubmitting, isValid, dirty }) => (
-          <Form className="ui form" onSubmit={handleSubmit} autoComplete="off">
-            <MyTextInput placeholder="Title" name="title" />
-            <MyTextArea placeholder="Description" name="description" rows={3} />
+          <Form className='ui form' onSubmit={handleSubmit} autoComplete='off'>
+            <MyTextInput placeholder='Title' name='title' />
+            <MyTextArea placeholder='Description' name='description' rows={3} />
             <MySelectInput
               options={categoryOptions}
-              placeholder="Category"
-              name="category"
+              placeholder='Category'
+              name='category'
             />
             <MyDateInput
-              placeholderText="Date"
-              name="date"
+              placeholderText='Date'
+              name='date'
               showTimeSelect
-              timeCaption="time"
-              dateFormat="MMMM d, yyyy h:mm aa"
+              timeCaption='time'
+              dateFormat='MMMM d, yyyy h:mm aa'
             />
-            <Header content="Location Details" sub color="teal" />
-            <MyTextInput placeholder="City" name="city" />
-            <MyTextInput placeholder="Venue" name="venue" />
+            <Header content='Location Details' sub color='teal' />
+            <MyTextInput placeholder='City' name='city' />
+            <MyTextInput placeholder='Venue' name='venue' />
             <Button
               disabled={!dirty || isSubmitting || !isValid}
-              floated="right"
+              floated='right'
               positive
               loading={loading}
-              type="submit"
-              content="Submit"
+              type='submit'
+              content='Submit'
             />
             <Button
               as={Link}
-              to="/activities"
-              floated="right"
-              type="button"
-              content="Cancel"
+              to='/activities'
+              floated='right'
+              type='button'
+              content='Cancel'
             />
           </Form>
         )}

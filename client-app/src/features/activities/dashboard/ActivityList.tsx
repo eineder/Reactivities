@@ -14,7 +14,7 @@ export default observer(function ActivityList() {
         const [date, activities] = group;
         return (
           <Fragment key={date}>
-            <Header sub color="teal">
+            <Header sub color='teal'>
               {date}
             </Header>
             {activities.map((activity) => (
