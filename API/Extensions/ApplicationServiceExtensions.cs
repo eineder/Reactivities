@@ -1,6 +1,8 @@
 using System;
 using Application.Activities;
+using Application.Interfaces;
 using FluentValidation.AspNetCore;
+using Infrastructure.Security;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -34,6 +36,7 @@ namespace API.Extensions
             });
 
             services.AddMediatR(typeof(List.Handler).Assembly);
+            services.AddScoped<IUserAccessor, UserAccessor>();
             services.AddControllers().AddFluentValidation(config =>
             {
                 config.RegisterValidatorsFromAssemblyContaining<Create>();
