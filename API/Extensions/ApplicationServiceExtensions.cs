@@ -1,3 +1,4 @@
+using AutoMapper;
 using System;
 using Application.Activities;
 using Application.Interfaces;
@@ -9,6 +10,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.OpenApi.Models;
 using Persistence;
+using Application.Core;
 
 namespace API.Extensions
 {
@@ -35,6 +37,7 @@ namespace API.Extensions
                 });
             });
 
+            services.AddAutoMapper(typeof(MappingProfiles).Assembly);
             services.AddMediatR(typeof(List.Handler).Assembly);
             services.AddScoped<IUserAccessor, UserAccessor>();
             services.AddControllers().AddFluentValidation(config =>
