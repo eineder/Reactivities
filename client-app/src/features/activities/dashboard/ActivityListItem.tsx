@@ -2,6 +2,7 @@ import { format } from 'date-fns';
 import { Link } from 'react-router-dom';
 import { Button, Icon, Item, Segment } from 'semantic-ui-react';
 import { Activity } from '../../../app/models/activity';
+import ActivityListItemAttendee from './ActivityListItemAttendee';
 
 interface Props {
   activity: Activity;
@@ -13,7 +14,7 @@ const ActivityListItem = ({ activity }: Props) => {
       <Segment>
         <Item.Group>
           <Item>
-            <Item.Image size="tiny" circular src="/assets/user.png" />
+            <Item.Image size='tiny' circular src='/assets/user.png' />
             <Item.Content>
               <Item.Header as={Link} to={`activities/${activity.id}`}>
                 {activity.title}
@@ -25,21 +26,23 @@ const ActivityListItem = ({ activity }: Props) => {
       </Segment>
       <Segment>
         <span>
-          <Icon name="clock" />
+          <Icon name='clock' />
           {format(activity.date!, 'dd MM yyyy h:mm aa')}
-          <Icon name="marker" />
+          <Icon name='marker' />
           {activity.venue}
         </span>
       </Segment>
-      <Segment secondary>Attendees go here</Segment>
+      <Segment secondary>
+        <ActivityListItemAttendee attendees={activity.attendees!} />
+      </Segment>
       <Segment clearing>
         <span>{activity.description}</span>
         <Button
           as={Link}
           to={`/activities/${activity.id}`}
-          color="teal"
-          floated="right"
-          content="View"
+          color='teal'
+          floated='right'
+          content='View'
         />
       </Segment>
     </Segment.Group>
