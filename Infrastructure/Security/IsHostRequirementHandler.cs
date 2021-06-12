@@ -38,10 +38,10 @@ namespace Infrastructure.Security
 
             if (!Guid.TryParse(activityGuidString, out var activityGuid)) return;
 
-            var attendee = _dbContext
+            var attendee = await _dbContext
                 .ActivityAttendees
                 .AsNoTracking()
-                .FirstOrDefault(x => x.AppUserId == userId && x.ActivityId == activityGuid);
+                .FirstOrDefaultAsync(x => x.AppUserId == userId && x.ActivityId == activityGuid);
 
             if (attendee == null) return;
 
