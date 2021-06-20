@@ -86,6 +86,7 @@ const agent = {
     update: (activity: Activity) =>
       requests.put<void>(`/activities/${activity.id}`, activity),
     delete: (id: string) => requests.del<void>(`/activities/${id}`),
+    attend: (id: string) => requests.post<void>(`/activities/${id}/`, {}),
   },
   Account: {
     current: () => requests.get<User>('/account'),
